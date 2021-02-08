@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Mouse
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      | MsUp |      |      |      |      | MsUp |      |      |      |
+ * |      |      |      | MsUp |      |      |      |      | MsUp |      |      |  CAD |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      | MsLe | MsDn | MsRi |      |      | MsLe | MsDn | MsRi |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOUSE] = LAYOUT_ortho_4x12(
-  XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX, CALTDEL,
   XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX,
   KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN1, KC_BTN2, KC_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
