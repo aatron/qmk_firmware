@@ -23,6 +23,7 @@ enum planck_keycodes {
 #define CALTDEL LCTL(LALT(KC_DEL))
 #define TSKMGR LCTL(LSFT(KC_ESC))
 
+// Defines the combo keys
 enum combos {
   DoubleAlt_OS,
 };
@@ -30,8 +31,44 @@ enum combos {
 const uint16_t PROGMEM os_combo[] = {KC_LALT, KC_RALT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
+  // Left Alt + Right Alt = OS Key
   [DoubleAlt_OS] = COMBO(os_combo, KC_LGUI)
 };
+
+//// Define RGB lights
+//// Light LEDs 6              to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
+//const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//    {1, 3, HSV_RED},       // Light 3 LEDs, starting with LED 1
+//    {7, 3, HSV_RED}       // Light 3 LEDs, starting with LED 6
+//);
+//// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+//const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//    {4, 1, HSV_CYAN},
+//    {10, 1, HSV_CYAN}
+//);
+//// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
+//const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//    {5, 1, HSV_PURPLE},
+//    {11, 1, HSV_PURPLE}
+//);
+//// Light LEDs 13 & 14 in green when keyboard layer 3 is active
+//const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//    {6, 1, HSV_GREEN},
+//    {12, 1, HSV_GREEN}
+//);
+//
+//
+//const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+//    my_capslock_layer,
+//    my_layer1_layer,    // Overrides caps lock layer
+//    my_layer2_layer,    // Overrides other layers
+//    my_layer3_layer     // Overrides other layers
+//);
+
+//void keyboard_post_init_user(void) {
+//    // Enable the LED layers
+//    rgblight_layers = my_rgb_layers;
+//}
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -48,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_DVORAK] = LAYOUT_ortho_4x12( \
-  KC_ESC,  KC_QUOT, KC_COMM, KC_DOT,XXXXXXX,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC, \
+  KC_ESC,  KC_QUOT, KC_COMM, KC_DOT,KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC, \
   KC_TAB,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_ENT, \
   KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_RSFT, \
   KC_LCTL,  KC_LALT, NUMPAD, LOWER, KC_SPC,   KC_SPC,  KC_SPC,  KC_SPC,  RAISE,  MO(_MOUSE), KC_RALT,   KC_RCTL \
@@ -185,6 +222,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // IF KC_LGUI pressed and _NUMPAD activated then return false from KC_LGUI
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+  rgblight_disable();
   switch (keycode) {
     case LOWER:
       if (record->event.pressed) {
@@ -192,6 +231,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         //update_tri_layer(_LOWER, _LEFT_OS, _NUMPAD);
       } else {
         layer_off(_LOWER);
+        //rgblight_enable();
         //update_tri_layer(_LOWER, _LEFT_OS, _NUMPAD);
       }
       return false;
@@ -216,20 +256,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-//    case KC_LGUI:
-//      if (record->event.pressed) {
-//        layer_on(_LEFT_OS);
-//        update_tri_layer(_LOWER, _LEFT_OS, _NUMPAD);
-//      } else {
-//        if (layer_state_is(_NUMPAD)) {
-//            return true;
-//        }
-//
-//        layer_off(_LEFT_OS);
-//        update_tri_layer(_LOWER, _LEFT_OS, _NUMPAD);
-//      }
-//      return false;
-//      break;
   }
   return true;
 }
