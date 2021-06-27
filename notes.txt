@@ -1,0 +1,16 @@
+INFO aatron keymap directory created in: C:/projects/Go_1_10/src/github.com/aatron/qmk_firmware/keyboards/lets_split/keymaps/aatron
+
+command prompt:
+
+qmk compile -kb keebio/nyquist/rev3 -km default_4x12
+qmk compile -kb keebio/nyquist/rev3 -km aatron_4x12
+
+archive:
+    qmk compile -kb lets_split/default -km default
+    qmk compile -kb lets_split/negativecapabilitymachine -km default
+    qmk compile -kb keebio/nyquist -km default_4x12
+    qmk compile -kb lets_split/rev2 -km aatron
+    qmk compile -kb negativecapabilitymachine/split -km default
+
+PYTHONHOME = 'C:\Users\a\AppData\Local\Programs\Python\Python38-32'
+
